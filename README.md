@@ -1,4 +1,6 @@
-lastfm-compare
-==============
+Last.fm compare tool
+====================
 
-Compare common artists of two users
+### Try demo [here](http://lastfm.eu5.org/compare/).
+
+![Image](http://pastexen.com/i/E6inY90Qwg.png)
