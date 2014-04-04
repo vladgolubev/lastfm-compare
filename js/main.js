@@ -14,7 +14,9 @@ $(document).ready(function() {
 		$('input, #period').attr({
 			disabled: true
 		});
-		$('#period').css({'background-color': '#ececec'});
+		$('#period').css({
+			'background-color': '#ececec'
+		});
 		//
 		$('#inputs').append('<a href="">Try again?</a>');
 		$('#compare, .howto').remove();
@@ -146,7 +148,7 @@ function fetch(ar, pl) {
 					}
 				}
 				$('table tbody').before('<thead><tr><th>Common Artist</th><th>Playcount</th><th>Playcount</th><th>Common Artist</th></tr></thead>');
-				$("table").tablesorter(); 
+				$("table").tablesorter();
 
 				hightlightBold();
 			}
@@ -185,12 +187,17 @@ function hightlightBold() {
 		var td1 = $('tr:eq(' + i + ') td:eq(1)');
 		var td2 = $('tr:eq(' + i + ') td:eq(2)');
 		if (parseInt(td1.text()) > parseInt(td2.text())) {
-			td1.css({'font-weight': 'bold'});
+			td1.css({
+				'font-weight': 'bold'
+			});
 		} else if (parseInt(td1.text()) !== parseInt(td2.text())) {
-			td2.css({'font-weight': 'bold'});
+			td2.css({
+				'font-weight': 'bold'
+			});
 		}
 	}
 }
+
 function getPlays(user, from, to) {
 	console.log('getPlays called');
 };
@@ -203,17 +210,26 @@ getPlays.lastDay = function(user) {
 	});
 }
 
-
-/*//Токен авторизації
-function grabToken() {
-	var token;
-	if (window.location.href.indexOf('token')) {
-		token = window.location.href.split('=')[1];
-	}
-	return token;
-}
-api_key5ddb360d1e5fa830834e4b9ec479b7c6methodauth.getSessiontokend49e35c5312092d360ea5c13f644c488mysecret
-52b4961a8f4f18a5b76603dc92d7ac7b
-$.getJSON('http://ws.audioscrobbler.com/2.0/?method=auth.getSession&api_key=5ddb360d1e5fa830834e4b9ec479b7c6&token=d49e35c5312092d360ea5c13f644c488&api_sig=52b4961a8f4f18a5b76603dc92d7ac7b&format=json', function(json) {
-	console.log(json);
-});*/
+//Typehead
+$(document).ready(function() {
+	var substringMatcher=function(strs){return function findMatches(q,cb){var matches,substringRegex;matches=[];substrRegex=new RegExp(q,'i');$.each(strs,function(i,str){if(substrRegex.test(str)){matches.push({value:str});}});cb(matches);};};
+	var friends = [];
+	$('.typeahead').typeahead({
+		hint: true,
+		highlight: true,
+		minLength: 1
+	}, {
+		name: 'friends',
+		displayKey: 'value',
+		source: substringMatcher(friends)
+	});
+	$('#user2').on('focus', function() {
+		var u1 = $('#user1').val();
+		$.getJSON('http://ws.audioscrobbler.com/2.0/?method=user.getfriends&user=' + u1 + '&limit=200&api_key=5ddb360d1e5fa830834e4b9ec479b7c6&format=json', function(json) {
+			for (var i in json.friends.user) {
+				friends.push(json.friends.user[i].name);
+			}
+			console.log(friends);
+		});
+	})
+});

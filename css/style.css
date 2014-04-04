@@ -143,3 +143,34 @@ hr {
 	margin: 1em 0;
 	padding: 0;
 }
+/*Typehead*/
+.tt-dropdown-menu {
+	width: 153px;
+	margin-top: 0px;
+	padding: 0;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+}
+header span {
+	font-size: 12px;
+	color: #000;
+	text-shadow: none;
+}
+.tt-hint {
+	color: #CCC;
+}
+.tt-suggestion {
+	padding: 3px 10px;
+	cursor: pointer;
+}
+.tt-suggestion.tt-cursor {
+	color: #fff;
+	background-color: #e31b23;
+}
+input.typeahead.tt-hint {
+	top: -18px !important;
+}
+input.typeahead.tt-input {
+	margin-top: -16px;
+}
