@@ -1,0 +1,137 @@
+a {
+	text-decoration: none;
+}
+body {
+	margin: 0;
+	font-family: sans-serif;
+}
+header {
+	width: 100%;
+	height: 60px;
+	background-color: #e31b23;
+	background-image: linear-gradient(#e31b23, #b32024);
+}
+header > p {
+	color: #fff;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 32px;
+	letter-spacing: 1;
+	margin: 0;
+	padding: 10px 0px 0px 20px;
+	float: left;
+	text-shadow: 0px 0px 2px #FFF, 1px 1px 1px #000;
+}
+header > p:first-child {
+	cursor: pointer;
+	-webkit-transition: all .08s;
+	-moz-transition: all .08s;
+	transition: all .08s;
+}
+header > p:first-child:hover {
+	border-bottom: 3px solid #fff;
+	padding-left: 0px;
+	margin-left: 20px;
+}
+header > #inputs {
+	margin-top: -5px;
+	margin-left: 12%;
+}
+header > #inputs > a {
+	font-size: 12px;
+	text-shadow: none;
+	color: #fff;
+	font-weight: normal;
+	letter-spacing: 0;
+	text-decoration: underline;
+	cursor: pointer;
+}
+header > #user {
+	float: right;
+}
+header > #user > .username {
+	background: #fff;
+	padding: 3px 10px;
+	margin: 16px;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #e31b23;
+	font-family: Arial;
+	font-weight: bold;
+}
+header > #user > .username:hover {
+	box-shadow: 0px 0px 3px #e31b23 inset;
+	background: #FFF4F4;
+}
+select {
+	border-radius: 3px;
+}
+table {
+	border-collapse: collapse;
+	width: 100%;
+	font-family: sans-serif;
+}
+table tr:nth-child(even) {
+	background-color: #FFFCF0;
+}
+table tr:hover {
+	background-color: #FFF9DF;
+}
+table td, th {
+	border: 1px solid rgba(0, 0, 0, 0.06);
+	text-align: center;
+	padding: 5px;
+}
+table thead tr {
+	background: #ECECEC;
+}
+table th {
+	background-image: url(../img/asc.gif);
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-position: center right;
+}
+th.headerSortUp { 
+	background-image: url(../img/asc.gif); 
+	background-color: #b32024;
+	color: #fff;
+}
+th.headerSortDown { 
+	background-image: url(../img/desc.gif); 
+	background-color: #e31b23;
+	color: #fff;
+} 
+table td:first-child, table td:last-child, table th:first-child, table th:last-child {
+	width: 40%;
+}
+
+
+div.howto {
+	background: #ececec;
+	text-align: center;
+	width: 45%;
+	margin: 0 auto;
+	padding: 25px;
+	border-radius: 5px;
+	padding-right: 50px;
+}
+div.howto img {
+	border-radius: 4px;
+	margin-bottom: 10px;
+	opacity: .8;
+	box-shadow: 0px 0px 12px #9B9B9B;
+}
+div.howto span {
+	font-size: 50px;
+	float: left;
+	color: #BBBBBB;
+	font-weight: bold;
+}
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #fff;
+	margin: 1em 0;
+	padding: 0;
+}
