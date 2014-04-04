@@ -11,7 +11,7 @@ $(document).ready(function() {
 	});
 	$('#compare').on('click', function() {
 		//Зробити елементи DISABLED
-		$('input, #period').attr({
+		$('input, #period, .typeahead').attr({
 			disabled: true
 		});
 		$('#period').css({
@@ -224,12 +224,12 @@ $(document).ready(function() {
 		source: substringMatcher(friends)
 	});
 	$('#user2').on('focus', function() {
+		friends = [];
 		var u1 = $('#user1').val();
 		$.getJSON('http://ws.audioscrobbler.com/2.0/?method=user.getfriends&user=' + u1 + '&limit=200&api_key=5ddb360d1e5fa830834e4b9ec479b7c6&format=json', function(json) {
 			for (var i in json.friends.user) {
 				friends.push(json.friends.user[i].name);
 			}
-			console.log(friends);
 		});
 	})
 });
