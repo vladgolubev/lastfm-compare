@@ -63,6 +63,14 @@ header > #user > .username:hover {
 	box-shadow: 0px 0px 3px #e31b23 inset;
 	background: #FFF4F4;
 }
+footer {
+	text-align: center;
+	padding-top: 100px;
+}
+footer span.bold {
+	font-weight: bold;
+	font-size: 10pt;
+}
 select {
 	border-radius: 3px;
 }
