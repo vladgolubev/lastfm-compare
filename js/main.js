@@ -7,6 +7,13 @@ $(document).ready(function() {
 			location.replace('http://lastfm.eu5.org/compare');
 		}
 	});
+	//Не клацати по картинкам!
+	$('img').on('click', function() {
+		$('.attention').fadeIn();
+		setTimeout(function() {
+			$('.attention').fadeOut();
+		}, 4000);
+	});
 	//Починати по ЕНТЕРУ
 	$('input').keyup(function(event) {
 		if (event.keyCode == 13) {
