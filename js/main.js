@@ -4,7 +4,7 @@ $(document).ready(function() {
 		if (document.location.href.indexOf('about') < 0) {
 			location.reload();
 		} else {
-			location.replace(location.origin);
+			location.replace('http://lastfm.eu5.org/compare');
 		}
 	});
 	//Починати по ЕНТЕРУ
