@@ -1,7 +1,11 @@
 //Event handlers
 $(document).ready(function() {
 	$('header p:first').on('click', function() {
-		location.reload();
+		if (document.location.href.indexOf('about') < 0) {
+			location.reload();
+		} else {
+			location.replace(location.origin);
+		}
 	});
 	//Починати по ЕНТЕРУ
 	$('input').keyup(function(event) {
