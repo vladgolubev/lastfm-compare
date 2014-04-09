@@ -1,18 +1,15 @@
 //Event handlers
 $(document).ready(function() {
-	$('header p:first').on('click', function() {
-		if (document.location.href.indexOf('about') < 0) {
-			location.reload();
-		} else {
-			location.replace('http://lastfm.eu5.org/compare');
-		}
-	});
-	//Не клацати по картинкам!
-	$('img').on('click', function() {
+	function attention(text, timeout, callback) {
+		$('.attention').text(text);
 		$('.attention').fadeIn();
 		setTimeout(function() {
 			$('.attention').fadeOut();
-		}, 4000);
+		}, timeout);
+	}
+	//Не клацати по картинкам!
+	$('img').on('click', function() {
+		attention('Don\'t click on screenshots! They are for an example. Type usernames ABOVE :D', 4000);
 	});
 	//Починати по ЕНТЕРУ
 	$('input').keyup(function(event) {
@@ -25,12 +22,14 @@ $(document).ready(function() {
 		$('input, #period, #user2').attr({
 			disabled: true
 		});
-		$('.twitter-typeahead input').css({'background-color': '#eee'});
+		$('.twitter-typeahead input').css({
+			'background-color': '#333'
+		});
 		$('#period').css({
 			'background-color': '#ececec'
 		});
 		//
-		$('#inputs').append('<a href="">Try again?</a>');
+		$('header table td:eq(4)').append('<a href="" id="again">Try again?</a>');
 		$('#compare, .howto').remove();
 		var i1 = $('#user1');
 		var i2 = $('#user2');
@@ -41,7 +40,10 @@ $(document).ready(function() {
 			console.log(user1, user2);
 			getArtists(user1, 1, period);
 		} else {
-			alert('Hey, you have to enter two valid usernames!');
+			attention('Usernames aren\'t valid. Try again.', 3000);
+			setTimeout(function() {
+				window.location.reload()
+			}, 3000);
 		}
 	});
 });
@@ -87,8 +89,10 @@ function getArtists(user, page, period) {
 					}
 				}
 			} else {
-				alert('                                ERROR!\n\n\n                        ACCESS DENIED!!!');
-				alert('Now when you come to think of it, check if you entered correct usernames ;)');
+				attention('Something went wrong. Check entered usernames.', 3000);
+				setTimeout(function() {
+					window.location.reload()
+				}, 3000);
 			}
 		});
 	}
@@ -96,9 +100,9 @@ function getArtists(user, page, period) {
 }
 
 function fetch(ar, pl) {
-	if ($('table tr').length < 3) {
+	if ($('#wrapper table tr').length < 3) {
 		for (var i in ar) {
-			$('table tr:last').after('<tr><td>' + ar[i] + '</td><td>' + pl[i] + '</td><td></td><td></td></tr>');
+			$('#wrapper table tr:last').after('<tr><td>' + ar[i] + '</td><td>' + pl[i] + '</td><td></td><td></td></tr>');
 			if (i == ar.length - 1) {
 				getArtists($('#user2').val(), 1, $('#period').val());
 			}
@@ -106,11 +110,11 @@ function fetch(ar, pl) {
 	} else {
 		for (var i in ar) {
 			var eq = parseInt(parseInt(i) + 1);
-			$('table tr:eq(' + eq + ') td:eq(2)').text(pl[i]);
-			$('table tr:eq(' + eq + ') td:eq(3)').text(ar[i]);
+			$('#wrapper table tr:eq(' + eq + ') td:eq(2)').text(pl[i]);
+			$('#wrapper table tr:eq(' + eq + ') td:eq(3)').text(ar[i]);
 			//Якщо у другого користувача більше виконавців - додати нові рядочки
-			if ($('table tr:eq(' + eq + ') td:eq(2)').length < 1) {
-				$('table tr:last').after('<tr><td></td><td></td><td>' + pl[i] + '</td><td>' + ar[i] + '</td></tr>');
+			if ($('#wrapper table tr:eq(' + eq + ') td:eq(2)').length < 1) {
+				$('#wrapper table tr:last').after('<tr><td></td><td></td><td>' + pl[i] + '</td><td>' + ar[i] + '</td></tr>');
 			}
 			if (parseInt(i) === ar.length - 1) {
 				var ret = intersect(artists[$('#user1').val()], artists[$('#user2').val()]);
@@ -146,11 +150,11 @@ function fetch(ar, pl) {
 				}
 				console.log(commonObj);
 				var zz = 0;
-				$('table tr').remove();
+				$('#wrapper table tr').remove();
 				for (var i in commonObj) {
 					var eq = zz;
 					//parseInt(parseInt(zz) + 0);
-					$('table').append('<tr><td>' + ret[zz] + '</td><td>' + commonObj[i][0] + '</td><td>' + commonObj[i][1] + '</td><td>' + ret[zz] + '</td><tr>');
+					$('#wrapper table').append('<tr><td>' + ret[zz] + '</td><td>' + commonObj[i][0] + '</td><td>' + commonObj[i][1] + '</td><td>' + ret[zz] + '</td><tr>');
 					zz++;
 				}
 				//Видалити зайві рядочки
@@ -159,8 +163,8 @@ function fetch(ar, pl) {
 						$('tr').eq(i).remove();
 					}
 				}
-				$('table tbody').before('<thead><tr><th>Common Artist</th><th>Playcount</th><th>Playcount</th><th>Common Artist</th></tr></thead>');
-				$("table").tablesorter();
+				$('#wrapper table tbody').before('<thead><tr><th>Common Artist</th><th>Playcount</th><th>Playcount</th><th>Common Artist</th></tr></thead>');
+				$('#wrapper table').tablesorter();
 
 				hightlightBold();
 			}
@@ -224,7 +228,21 @@ getPlays.lastDay = function(user) {
 
 //Typehead
 $(document).ready(function() {
-	var substringMatcher=function(strs){return function findMatches(q,cb){var matches,substringRegex;matches=[];substrRegex=new RegExp(q,'i');$.each(strs,function(i,str){if(substrRegex.test(str)){matches.push({value:str});}});cb(matches);};};
+	var substringMatcher = function(strs) {
+		return function findMatches(q, cb) {
+			var matches, substringRegex;
+			matches = [];
+			substrRegex = new RegExp(q, 'i');
+			$.each(strs, function(i, str) {
+				if (substrRegex.test(str)) {
+					matches.push({
+						value: str
+					});
+				}
+			});
+			cb(matches);
+		};
+	};
 	var friends = [];
 	$('.typeahead').typeahead({
 		hint: true,
