@@ -12,20 +12,27 @@
 	<body>
 	<script src="js/main.js"></script>
 		<header>
-			<p>Last.compare</p>
-			<p id="inputs">
-				<select name="time" id="period">
-					<option value="overall">for all time</option>
-					<option value="12month">12 months</option>
-					<option value="6month">6 months</option>
-					<option value="3month">3 months</option>
-					<option value="1month">1 months</option>
-					<option value="7day">7 days</option>
-				</select>
-				<input id="user1" placeholder="1st username" value="">
-				<input type="text" id="user2" placeholder="2nd username" class="typeahead" value="">
-				<button id="compare">Compare</button>
-			</p>
+			<table>
+				<tr>
+					<td><a id="logo" href="/">Last.compare</a></td>
+					<td>
+						<select name="time" id="period">
+							<option value="overall">for all time</option>
+							<option value="12month">12 months</option>
+							<option value="6month">6 months</option>
+							<option value="3month">3 months</option>
+							<option value="1month">1 months</option>
+							<option value="7day">7 days</option>
+						</select>
+					</td>
+					<td><input id="user1" placeholder="1st username" value=""></td>
+					<td><input type="text" id="user2" placeholder="2nd username" class="typeahead" value=""></td>
+					<td><button id="compare">Compare</button></td>
+					<td></td>
+				</tr>
+			</table>
+				<div class="avatar"></div>
+				<div class="avatar"></div>
 		</header>
 			<div id="wrapper">
 				<table>
@@ -37,7 +44,7 @@
 					</tr>
 				</table>
 				<hr>
-				<p class="attention center">Do not click on images! This is an example. Type usernames ABOVE :D</p>
+				<p class="attention center"></p>
 				<hr>
 				<div class="howto">
 				<span>1</span>

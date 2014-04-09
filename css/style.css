@@ -1,6 +1,10 @@
 a {
 	text-decoration: none;
 }
+#again {
+	color: #fff;
+	text-decoration: underline;
+}
 .attention {
 	background: #FFE580;
 	padding: 10px;
@@ -12,33 +16,29 @@ body {
 	margin: 0;
 	font-family: sans-serif;
 }
+button {
+	cursor: pointer;
+	padding: 5px 16px;
+	border-radius: 3px;
+	background-image: linear-gradient(#c61a21, #a61b1e);
+	border: none;
+	color: #fff;
+	box-shadow: #e62d34 0 1px 1px, inset rgba(0,0,0,0.25) 0 1px 1px;
+}
+button:hover {
+	background-image: linear-gradient(#b2171d, #92181c);
+}
+button:active {
+	background-image: linear-gradient(#921317, #8a171a);
+}
 header {
 	width: 100%;
 	height: 60px;
 	background-color: #e31b23;
 	background-image: linear-gradient(#e31b23, #b32024);
-}
-header > p {
-	color: #fff;
-	font-family: Arial;
-	font-weight: bold;
-	font-size: 32px;
-	letter-spacing: 1;
-	margin: 0;
-	padding: 10px 0px 0px 20px;
-	float: left;
-	text-shadow: 0px 0px 2px #FFF, 1px 1px 1px #000;
-}
-header > p:first-child {
-	cursor: pointer;
-	-webkit-transition: all .08s;
-	-moz-transition: all .08s;
-	transition: all .08s;
-}
-header > p:first-child:hover {
-	border-bottom: 3px solid #fff;
-	padding-left: 0px;
-	margin-left: 20px;
+	display: table;
+	position: absolute;
+	margin-top: -60px;
 }
 header > #inputs {
 	margin-top: -5px;
@@ -78,50 +78,17 @@ footer span.bold {
 	font-weight: bold;
 	font-size: 10pt;
 }
-select {
-	border-radius: 3px;
-}
-table {
-	border-collapse: collapse;
-	width: 100%;
-	font-family: sans-serif;
-}
-table tr:nth-child(even) {
-	background-color: #FFFCF0;
-}
-table tr:hover {
-	background-color: #FFF9DF;
-}
-table td, th {
-	border: 1px solid rgba(0, 0, 0, 0.06);
-	text-align: center;
-	padding: 5px;
-}
-table thead tr {
-	background: #ECECEC;
-}
-table th {
-	background-image: url(../img/asc.gif);
-	cursor: pointer;
-	background-repeat: no-repeat;
-	background-position: center right;
-}
-th.headerSortUp { 
-	background-image: url(../img/asc.gif); 
-	background-color: #b32024;
+input {
+	border-radius: 2px;
+	padding: 6px 10px;
+	border: 1px solid #882629;
+	width: 150px;
+	padding-right: 30px;
+	background: #333333;
 	color: #fff;
+	
 }
-th.headerSortDown { 
-	background-image: url(../img/desc.gif); 
-	background-color: #e31b23;
-	color: #fff;
-} 
-table td:first-child, table td:last-child, table th:first-child, table th:last-child {
-	width: 40%;
-}
-
-
-div.howto {
+.howto {
 	background: #ececec;
 	text-align: center;
 	width: 45%;
@@ -130,13 +97,13 @@ div.howto {
 	border-radius: 5px;
 	padding-right: 50px;
 }
-div.howto img {
+.howto img {
 	border-radius: 4px;
 	margin-bottom: 10px;
 	opacity: .8;
 	box-shadow: 0px 0px 12px #9B9B9B;
 }
-div.howto span {
+.howto span {
 	font-size: 50px;
 	float: left;
 	color: #BBBBBB;
@@ -150,6 +117,88 @@ hr {
 	margin: 1em 0;
 	padding: 0;
 }
+#logo {
+	cursor: pointer;
+	color: #fff;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 32px;
+	letter-spacing: 1;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
+	margin-left: 20px;
+	float: left;
+	text-shadow: 0px 0px 2px #FFF, 1px 1px 1px #000;
+}
+#logo:hover {
+	border-bottom: 3px solid #fff;
+}
+select {
+	cursor: pointer;
+	background-image: linear-gradient(#c61a21, #a61b1e);
+	color: #fff;
+	border: none;
+	border-radius: 2px;
+	box-shadow: #e62d34 0 1px 1px, inset rgba(0,0,0,0.25) 0 1px 1px;
+	padding: 5px 16px;
+}
+select option {
+	background-color: #c61a21;
+}
+table {
+	width: 100%;
+	height: 60px;
+}
+td {
+	vertical-align: middle;
+}
+td:first-child, td:last-child {
+	width: 25% !important;
+}
+.twitter-typeahead {
+	top: 8px;
+}
+#wrapper > table {
+	border-collapse: collapse;
+	width: 100%;
+	height: 0px;
+	font-family: sans-serif;
+	margin-top: 60px;
+}
+#wrapper > table tr:nth-child(even) {
+	background-color: #FFFCF0;
+}
+#wrapper > table tr:hover {
+	background-color: #FFF9DF;
+}
+#wrapper > table td, th {
+	border: 1px solid rgba(0, 0, 0, 0.06);
+	text-align: center;
+	padding: 5px;
+}
+#wrapper > table thead tr {
+	background: #ECECEC;
+}
+#wrapper > table th {
+	background-image: url(../img/asc.gif);
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-position: center right;
+}
+#wrapper > th.headerSortUp { 
+	background-image: url(../img/asc.gif); 
+	background-color: #b32024;
+	color: #fff;
+}
+#wrapper > th.headerSortDown { 
+	background-image: url(../img/desc.gif); 
+	background-color: #e31b23;
+	color: #fff;
+} 
+#wrapper > table td:first-child, table td:last-child, table th:first-child, table th:last-child {
+	width: 40%;
+}
+
 /*Typehead*/
 .tt-dropdown-menu {
 	width: 153px;
