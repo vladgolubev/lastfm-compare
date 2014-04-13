@@ -15,6 +15,10 @@ a {
 body {
 	margin: 0;
 	font-family: sans-serif;
+	padding-bottom: 500px;
+}
+.bold {
+	font-weight: bold !important;
 }
 button {
 	cursor: pointer;
@@ -133,6 +137,9 @@ hr {
 #logo:hover {
 	border-bottom: 3px solid #fff;
 }
+.notp {
+	font-size: 24pt;
+}
 select {
 	cursor: pointer;
 	background-image: linear-gradient(#c61a21, #a61b1e);
@@ -145,12 +152,28 @@ select {
 select option {
 	background-color: #c61a21;
 }
+.share {
+	text-align: center;
+	font-size: 16pt;
+	font-family: georgia;
+	font-style: italic;
+	display: none;
+}
+.share input {
+	background-color: #fff;
+	color: #444;
+	width: 400px;
+	text-align: center;
+}
 table {
 	width: 100%;
 	height: 60px;
 }
 td {
 	vertical-align: middle;
+}
+td[colspan="2"] {
+	background: #FAFAFA;
 }
 td:first-child, td:last-child {
 	width: 25% !important;

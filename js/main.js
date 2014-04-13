@@ -1,6 +1,7 @@
 //Event handlers
 $(document).ready(function() {
-	function attention(text, timeout, callback) {
+	//Виведення попередження
+	function attention(text, timeout) {
 		$('.attention').text(text);
 		$('.attention').fadeIn();
 		setTimeout(function() {
@@ -19,7 +20,7 @@ $(document).ready(function() {
 	});
 	$('#compare').on('click', function() {
 		//Зробити елементи DISABLED
-		$('input, #period, #user2').attr({
+		$('table input, #period, #user2').attr({
 			disabled: true
 		});
 		$('.twitter-typeahead input').css({
@@ -46,13 +47,33 @@ $(document).ready(function() {
 			}, 3000);
 		}
 	});
+	//Запуск по хешу із адресного рядка
+	var hash = window.location.hash.split('#');
+	if (hash.length > 1) {
+		$('#user1').val(hash[1]);
+		$('#user2').val(hash[2]);
+		$('select').val(hash[3]);
+		$('#compare').click();
+	}
+	//Чи видно останній рядок таблиці?
+	function checkPositionAndShow() {
+		if ($(window).scrollTop() >= $('tr:last').position().top && $('thead:visible').length > 0) {
+			$('.share').fadeIn(777);
+		}
+	}
+	checkPositionAndShow();
+	//Показувати його лише при прокручуванні до кінця
+	$(window).scroll(function() {
+		checkPositionAndShow();
+	});
 });
 var artists = {},
 	playcount = {},
 	ret = [],
 	indx = {},
 	commonObj = {},
-	indexesInSecod = [];
+	indexesInSecod = [],
+	numberOfTotalPlays = {};
 
 function getArtists(user, page, period) {
 	//Почати прогрес-бар
@@ -68,6 +89,8 @@ function getArtists(user, page, period) {
 			if (json.topartists !== undefined) {
 				currPos = parseInt(json.topartists['@attr'].page);
 				page = currPos + 1;
+				//Загальна кількість виконавців кожного за даний період
+				numberOfTotalPlays[user] = parseInt(json.topartists['@attr'].total);
 				endPos = parseInt(Math.ceil(json.topartists['@attr'].total / json.topartists['@attr'].perPage));
 				var q = json.topartists.artist;
 				for (var i = 0; i < q.length; i++) {
@@ -163,10 +186,14 @@ function fetch(ar, pl) {
 						$('tr').eq(i).remove();
 					}
 				}
+				//Вставити заголовок
 				$('#wrapper table tbody').before('<thead><tr><th>Common Artist</th><th>Playcount</th><th>Playcount</th><th>Common Artist</th></tr></thead>');
-				$('#wrapper table').tablesorter();
+				$('#wrapper table').tablesorter(); //Ініціалізація скрипту сортування
 
 				hightlightBold();
+				commonStat();
+				//Посилання для шарінгу результатом
+				$('.share input').val(window.location.host + '/' + '#' + $('#user1').val() + '#' + $('#user2').val() + '#' + $('select').val());
 			}
 		}
 	}
@@ -203,15 +230,15 @@ function hightlightBold() {
 		var td1 = $('tr:eq(' + i + ') td:eq(1)');
 		var td2 = $('tr:eq(' + i + ') td:eq(2)');
 		if (parseInt(td1.text()) > parseInt(td2.text())) {
-			td1.css({
-				'font-weight': 'bold'
-			});
+			td1.addClass('bold');
 		} else if (parseInt(td1.text()) !== parseInt(td2.text())) {
-			td2.css({
-				'font-weight': 'bold'
-			});
+			td2.addClass('bold');
 		}
 	}
+}
+
+function commonStat() {
+	$('tr:last').after('<tr><td><span class="notp">' + numberOfTotalPlays[$('#user1').val()] + '</span> artists</td><td colspan="2"><span class="notp">' + ret.length + '</span> in common</td><td><span class="notp">' + numberOfTotalPlays[$('#user2').val()] + '</span> artists</td></tr>');
 }
 
 function getPlays(user, from, to) {

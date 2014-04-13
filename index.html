@@ -14,15 +14,15 @@
 		<header>
 			<table>
 				<tr>
-					<td><a id="logo" href="/">Last.compare</a></td>
+					<td><a id="logo" href="">Last.compare</a></td>
 					<td>
 						<select name="time" id="period">
 							<option value="overall">for all time</option>
-							<option value="12month">12 months</option>
-							<option value="6month">6 months</option>
-							<option value="3month">3 months</option>
-							<option value="1month">1 months</option>
-							<option value="7day">7 days</option>
+							<option value="12month">for 12 months</option>
+							<option value="6month">for 6 months</option>
+							<option value="3month">for 3 months</option>
+							<option value="1month" selected>for 1 month</option>
+							<option value="7day">for 7 days</option>
 						</select>
 					</td>
 					<td><input id="user1" placeholder="1st username" value=""></td>
@@ -57,9 +57,14 @@
 				You will get a detailed list of common artists!<br><br>
 				<img src="img/step2-sort.gif" width="350px">					
 				</div>
+				<div class="share">
+					<p>Show results with your friends! Just copy link below.</p>
+					<input type="text" value="">
+				</div>
 			</div>
 		<footer>
-			<a href="about">Contacts</a>
+			<script type="text/javascript" src="http://yandex.st/share/share.js" charset="utf-8"></script>
+			<div class="yashare-auto-init" data-yashareL10n="en" data-yashareQuickServices="facebook,twitter,gplus,vkontakte" data-yashareTheme="counter"></div>
 		</footer>
 	</body>
 	<!-- Yandex.Metrika counter --><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter24424790 = new Ya.Metrika({id:24424790, webvisor:true, clickmap:true, trackLinks:true, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/24424790" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
