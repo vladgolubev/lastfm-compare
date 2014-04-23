@@ -3,7 +3,7 @@ Last.fm compare tool
 
 ### Try demo [here](http://lastfm.eu5.org/compare/).
 
-![Image](http://i.imgur.com/KUKySgW.gif)
+![Image](http://i.imgur.com/DUY2mj5.gif)
 
 ##### External libraries used
 * [**NProgress.js**](http://ricostacruz.com/nprogress/) — progress bar
